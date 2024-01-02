@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  docker_php_app:
+    image: php:8.2-apache
+    container_name: docker_php_app
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www/html
+    volumes:
+      - ./app:/var/www/html
+    ports:
+      - 8000:80
+    networks:
+      - docker_php_network
+
+networks:
+  docker_php_network:
+    driver: bridge
